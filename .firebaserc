@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "legaldocuments-5520d": {
+      "hosting": {
+        "app": [
+          "legaldocuments-5520d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "legaldocuments-5520d"
+  }
+}
