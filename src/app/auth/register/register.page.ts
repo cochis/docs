@@ -82,7 +82,9 @@ export class RegisterPage implements OnInit {
     //   }, 10000);
     // })
   }
-
+  registroGoogle() {
+    this.authService.GoogleAuth();
+  }
   resetForm() {
     this.form.reset({
       correo: '',

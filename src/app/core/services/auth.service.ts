@@ -1,17 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 import { User } from '../interfaces/user.interface';
 import { FunctionsService } from './functions.service';
+import { GoogleAuthProvider } from "firebase/auth";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user$ = this.afAuth.authState;
+  public auth;
+
   constructor(private afAuth: AngularFireAuth,
     public afs: AngularFirestore,
-    public functions: FunctionsService) {
+    public functions: FunctionsService,
+    public router: Router,
+    public ngZone: NgZone,) {
   }
 
   // async sendVerificationEmail(): Promise < void> {}
@@ -92,6 +99,22 @@ export class AuthService {
     return userRef.set(userData, {
       merge: true,
     });
+  }
+  GoogleAuth() {
+    const provider = new GoogleAuthProvider();
+
+    return this.afAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        // this.SetUserData(result.user);
+        this.ngZone.run(() => {
+          this.router.navigate(['/documents']);
+        });
+
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
   }
 
 
