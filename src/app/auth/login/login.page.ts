@@ -30,14 +30,21 @@ export class LoginPage implements OnInit {
     if (!this.form.invalid) {
 
       console.log('this.formLogin.value  ==>', this.form.value);
-      this.authService.login(email, password);
+      this.authService.login(email, password).then(res => {
+        console.log('res', res)
+        this.form.reset({
+          correo: '',
+          password: '',
+        });
+        this.router.navigate(['/documents']);
+      },
+        (err) => {
+          console.log('err', err)
+
+        });
     }
 
     // Posteo de información
-    this.form.reset({
-      correo: '',
-      password: '',
-    });
-    this.router.navigate(['/documents']);
+
   }
 }

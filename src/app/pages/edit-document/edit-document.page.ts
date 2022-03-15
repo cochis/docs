@@ -76,7 +76,7 @@ export class EditDocumentPage implements OnInit {
       new Txt(' ').bold().fontSize(12).alignment('right').end
     )
     pdf.add(
-      new Txt('C. JUEZ CIVIL (AQUÍ PONES EL JUZGADO QUE CONOCE DEL ASUNTO) DEL DISTRITO JUDICIAL DE NEZAHUALCOYOTL. ').bold().fontSize(12).alignment('left').end
+      new Txt('C. JUEZ CIVIL '+ Iudex +' DEL DISTRITO JUDICIAL DE NEZAHUALCOYOTL. ').bold().fontSize(12).alignment('left').end
     )
     pdf.add(
       new Txt(' ').bold().fontSize(12).alignment('left').end

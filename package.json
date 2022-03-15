@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "~13.2.2",
     "@angular/router": "~13.2.2",
     "@ionic/angular": "^6.0.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "firebase": "^9.6.8",
     "pdfmake": "^0.2.4",
     "pdfmake-wrapper": "^2.1.2",

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../interfaces/user.interface';
 import { FunctionsService } from './functions.service';
 import { GoogleAuthProvider } from "firebase/auth";
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -45,25 +46,26 @@ export class AuthService {
     });
   }
 
-  async register(email: string, password: string) {
-
-    //   const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
-    //   if (user) {
-    //     console.log('user', user)
-    //     this.SendVerificationMail()
-    //     this.SetUserData(user);
-    //     return user;
-    //   }
-    // } catch (error) {
-    //   this.functions.toastError(error);
-    //   throw new Error(error);
-    // }
-    return await this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .catch((error) => {
-
-      });
-
+  async register(email: string, password: string): Promise<any> {
+    try {
+      const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      console.log('user', user)
+      let userSave: User = {
+        uid: user.uid,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        displayName: user.displayName,
+        dateCreated: Date.now().toString(),
+        dateEdited: Date.now().toString(),
+        lastLogIn: Date.now().toString(),
+        actived: false
+      }
+      this.updateUserData(userSave);
+      await this.sendVerifcationEmail();
+      return user;
+    } catch (error) {
+      console.log('Error->', error);
+    }
   }
 
   async requestPassword(email: string) {
@@ -87,35 +89,56 @@ export class AuthService {
       .then((u: any) => u.sendEmailVerification())
 
   }
-  SetUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
-    );
 
-
-    const userData: User = {
-      ...user
-    };
-    return userRef.set(userData, {
-      merge: true,
-    });
-  }
-  GoogleAuth() {
+  async GoogleAuth() {
     const provider = new GoogleAuthProvider();
 
-    return this.afAuth
-      .signInWithPopup(provider)
-      .then((result) => {
-        // this.SetUserData(result.user);
-        this.ngZone.run(() => {
-          this.router.navigate(['/documents']);
-        });
+    try {
+      const { user } = await this.afAuth.signInWithPopup(provider);
+      let userSave: User = {
+        uid: user.uid,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        displayName: user.displayName,
+        dateCreated: Date.now().toString(),
+        dateEdited: Date.now().toString(),
+        lastLogIn: Date.now().toString(),
+        actived: false
+      }
 
-      })
-      .catch((error) => {
-        window.alert(error);
-      });
+
+      this.updateUserData(userSave);
+      return user;
+    } catch (error) {
+      console.log('Error->', error);
+    }
+
+
+
+
   }
+  async sendVerifcationEmail(): Promise<void> {
+    try {
+      return (await this.afAuth.currentUser).sendEmailVerification();
+    } catch (error) {
+      console.log('Error->', error);
+    }
+  }
+  private updateUserData(user: User) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
+    const data: User = {
+      uid: user.uid,
+      email: user.email,
+      emailVerified: user.emailVerified,
+      displayName: user.displayName,
+      dateCreated: Date.now().toString(),
+      dateEdited: Date.now().toString(),
+      lastLogIn: Date.now().toString(),
+      actived: false
 
+    };
+
+    return userRef.set(data, { merge: true });
+  }
 }
