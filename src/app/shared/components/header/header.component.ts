@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { FunctionsService } from 'src/app/core/services/functions.service';
 import { MenuComponent } from '../menu/menu.component';
@@ -9,7 +9,8 @@ import { MenuComponent } from '../menu/menu.component';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
+  @Input() titulo: string = '';
+  @Input() titulo2: string = '';
   constructor(functions: FunctionsService,
     private popoverCtrl: PopoverController) { }
 

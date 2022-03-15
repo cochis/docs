@@ -1,57 +1,51 @@
-<ion-header class="ion-no-border" [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Registration form</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-card class="auth-form">
+<app-header titulo="Registro"></app-header>
+<ion-card class="auth-form" class="formInit">
   <ion-card-header>
-    <ion-card-title>Sign up</ion-card-title>
+    <ion-img src="/assets/img/logo.png"></ion-img>
+    <ion-card-title>Registro</ion-card-title>
   </ion-card-header>
 
-  <ion-card-content>
+  <ion-card-content >
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">E-mail</ion-label>
+        <ion-label position="floating">Correo electrónico</ion-label>
         <ion-input formControlName="email"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="email.invalid && email.touched" lines="none">
         <ion-text color="danger" class="form-error">
-          Please enter a valid email address.
+          Por favor ingresa un correo valido
         </ion-text>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Password</ion-label>
+        <ion-label position="floating">Contraseña</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
       <ion-item *ngIf="password.invalid && password.touched" lines="none">
         <ion-text color="danger" class="form-error">
-          Password is required.
+          La contraseña es requerida
         </ion-text>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Confirm password</ion-label>
+        <ion-label position="floating">Confirmación de contraseña</ion-label>
         <ion-input type="password" formControlName="confirmPassword"></ion-input>
       </ion-item>
       <ion-item *ngIf="form.hasError('notEqual') && confirmPassword.touched" lines="none">
         <ion-text color="danger" class="form-error">
-          Passwords does not match.
+          Las contraseñas no son iguales
         </ion-text>
       </ion-item>
 
       <ion-button type="submit" expand="block" [disabled]="loading || !form.valid">
-        {{ loading ? 'Loading...' : 'Sign up'}}
+        {{ loading ? 'Cargando...' : 'Registro'}}
       </ion-button>
     </form>
 
     <ion-text class="extra-options">
-      Already have an account yet?
-      <a [routerLink]="['/auth/login']">Sign in</a>
+     ¿Ya tienes una cuenta?
+      <a [routerLink]="['/login']">Ingresa</a>
     </ion-text>
   </ion-card-content>
 </ion-card>

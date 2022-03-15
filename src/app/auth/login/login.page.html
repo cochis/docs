@@ -1,39 +1,33 @@
-<ion-header class="ion-no-border" [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-card class="auth-form">
+<app-header titulo="Registro"></app-header>
+<ion-card class="auth-form" class="formInit">
   <ion-card-header>
-    <ion-card-title>Sign in</ion-card-title>
+    <ion-img src="/assets/img/logo.png"></ion-img>
+    <ion-card-title>Ingresa</ion-card-title>
   </ion-card-header>
 
   <ion-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">Email</ion-label>
+        <ion-label position="floating">Correo electrónico</ion-label>
         <ion-input formControlName="email"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Password</ion-label>
+        <ion-label position="floating">Contraseña</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
       <ion-text class="extra-options">
-        <a [routerLink]="['/auth/forgot']">Forget password?</a>
+        <a [routerLink]="['/auth/forgot']">¿No recuerdas tu contraseña?</a>
       </ion-text>
 
       <ion-button type="submit" expand="block" [disabled]="!form.valid || loading">
-        {{ loading ? 'Loading...' : 'Sign in'}}
+        {{ loading ? 'Loading...' : 'Ingresa'}}
       </ion-button>
     </form>
 
     <ion-text class="extra-options">
-      Don't have an account yet?
-      <a [routerLink]="['/auth/register']">Create an account</a>
+      ¿No tienes una cuenta?
+      <a [routerLink]="['/register']">Crea una cuenta</a>
     </ion-text>
   </ion-card-content>
 </ion-card>

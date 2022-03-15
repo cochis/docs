@@ -43,3 +43,29 @@
   .form-error {
     font-size: 0.8em;
   }
+  .formInit {
+    max-width:600px; 
+    text-align:center;
+  //  ] margin-left:auto;
+    // margin-right:auto;
+  }
+  .imgLaw{
+    display: block;
+    object-fit: inherit;
+    object-position: inherit;
+    border-radius: 100%;
+    width: 130px;
+    height: 130px;
+    margin: auto;
+  }
+  .titleLaw{
+    margin: auto;
+    font-size: 25px;
+    color: #444141;
+    text-align: center;
+    
+  }
+
+  .upper{
+    text-transform: uppercase;
+  }

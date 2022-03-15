@@ -27,3 +27,15 @@ export interface StsTokenManager {
     accessToken:    string;
     expirationTime: number;
 }
+
+
+export interface Document {
+    uid: string;
+    name: string;
+    type: string;
+    subType: string;
+    description: string;
+    dateCreated: Date;
+    dateEdited: Date;
+    actived: boolean;
+}

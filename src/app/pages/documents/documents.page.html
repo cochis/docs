@@ -1,11 +1,34 @@
-<app-header></app-header>
+<app-header titulo="Documentos"></app-header>
 
 <ion-content>
-<ion-card>
-    <ion-card-header>
-        <ion-label>Hola
-            
-        </ion-label>
-    </ion-card-header>
-</ion-card>
+
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="6" size-lg="3" size-md="4" size-sm="6" >
+                <ion-card [routerLink]="['/type-document']" [queryParams]="{type: 'laboral'}">
+                    <ion-card-title class="titleLaw">Laboral</ion-card-title>
+                    <ion-img class="imgLaw" src="/assets/img/laboral.jpg"></ion-img>
+                </ion-card>
+            </ion-col>
+            <ion-col size="6" size-lg="3" size-md="4" size-sm="6" >
+                <ion-card [routerLink]="['/type-document']" [queryParams]="{type: 'civil'}">
+                    <ion-card-title class="titleLaw">Civil</ion-card-title>
+                    <ion-img class="imgLaw" src="/assets/img/civil.jpg"></ion-img>
+                </ion-card>
+            </ion-col>
+            <ion-col size="6" size-lg="3" size-md="4" size-sm="6" >
+                <ion-card [routerLink]="['/type-document']" [queryParams]="{type: 'mercantil'}">
+                    <ion-card-title class="titleLaw">Mercantil</ion-card-title>
+                    <ion-img class="imgLaw" src="/assets/img/mercantil.jpg"></ion-img>
+                </ion-card>
+            </ion-col>
+            <ion-col size="6" size-lg="3" size-md="4" size-sm="6" >
+              <ion-card [routerLink]="['/type-document']" [queryParams]="{type: 'penal'}">
+                    <ion-card-title class="titleLaw">Penal</ion-card-title>
+                    <ion-img class="imgLaw" src="/assets/img/penal.jpg"></ion-img>
+                </ion-card>
+            </ion-col>
+          
+        </ion-row>
+    </ion-grid>
 </ion-content>

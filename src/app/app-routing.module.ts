@@ -27,10 +27,26 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
+    path: 'type-document',
+    loadChildren: () => import('./pages/type-document/type-document.module').then( m => m.TypeDocumentPageModule)
+  },
+  {
+    path: 'edit-document',
+    loadChildren: () => import('./pages/edit-document/edit-document.module').then( m => m.EditDocumentPageModule)
+  },
+  {
+    path: 'subtype-document',
+    loadChildren: () => import('./pages/subtype-document/subtype-document.module').then( m => m.SubtypeDocumentPageModule)
+  },
+  {
+    path: 'find-document',
+    loadChildren: () => import('./pages/find-document/find-document.module').then( m => m.FindDocumentPageModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
+  }
 ];
 
 @NgModule({

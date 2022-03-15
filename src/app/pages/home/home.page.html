@@ -1,14 +1,48 @@
-<app-header></app-header>
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+    <ion-title>Bienvenido</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button color="secondary">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-slides pager="ios" class="slide-full">
+
+    <ion-slide *ngFor="let slide of slides">
+
+      <ion-card mode="ios">
+        <img [src]="slide.img" class="slide-image" />
+
+        <ion-card-header>
+          <ion-card-subtitle>{{ slide.titulo }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{ slide.desc }}
+        </ion-card-content>
+
+      </ion-card>
+
+
+    </ion-slide>
+
+
+    <ion-slide class="auth-form">
+      <ion-button type="submit" expand="block" [routerLink]="['/login']">
+        Ingresa
+      </ion-button>
+      <ion-button type="submit" expand="block" [routerLink]="['/register']">
+        Registrate
+      </ion-button>
+    </ion-slide>
+
+
+  </ion-slides>
 </ion-content>

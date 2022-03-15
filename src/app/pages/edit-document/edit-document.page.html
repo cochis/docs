@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>editDocument</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <form [formGroup]="form" (ngSubmit)="generatePDF()">
+          <ion-item>
+            <ion-label position="floating" class="upper">Nombre 1</ion-label>
+            <ion-input formControlName="name1"  class="upper"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nombre 2</ion-label>
+            <ion-input formControlName="name2" class="upper"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Juzgado</ion-label>
+            <ion-input formControlName="atrium" class="upper"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Número de expediente</ion-label>
+            <ion-input formControlName="processus" class="upper"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Juzgado</ion-label>
+            <ion-input formControlName="Iudex" class="upper"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Fecha</ion-label>
+            <ion-input formControlName="date" class="upper"></ion-input>
+          </ion-item>
+
+
+          <ion-button type="submit" expand="block" [disabled]="!form.valid || loading">
+            {{ loading ? 'Loading...' : 'Generar PDF'}}
+          </ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

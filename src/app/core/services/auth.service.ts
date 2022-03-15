@@ -39,23 +39,24 @@ export class AuthService {
   }
 
   async register(email: string, password: string) {
-    try {
-      const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
-      if (user) {
-        console.log('user', user)
-        this.SendVerificationMail()
-        this.SetUserData(user);
-        return user;
-      }
-    } catch (error) {
-      this.functions.toastError(error);
-      throw new Error(error);
-    }
-    // return await this.afAuth
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .catch((error) => {
 
-    //   });
+    //   const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
+    //   if (user) {
+    //     console.log('user', user)
+    //     this.SendVerificationMail()
+    //     this.SetUserData(user);
+    //     return user;
+    //   }
+    // } catch (error) {
+    //   this.functions.toastError(error);
+    //   throw new Error(error);
+    // }
+    return await this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .catch((error) => {
+
+      });
+
   }
 
   async requestPassword(email: string) {
